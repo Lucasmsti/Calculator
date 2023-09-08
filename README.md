@@ -15,4 +15,5 @@ Basta abrir o arquivo `index.html` em seu navegador da web para usar a calculado
 - Cálculos com números decimais
 - Limpeza da operação atual
 
+link: https://lucasmsti.github.io/Calculator/
 
