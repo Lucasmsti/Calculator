@@ -22,15 +22,48 @@ class Calculator {
 
     // processando todas as operações
     process_operation(operation) {
+        // checando se o valor atual é vazio
+        if(this.current_operation_text.innerText === "" && operation !== "C") {
+            // mudança de operaçao
+            if(this.prev_operation_text.innerText !== "") {
+                this.change_operation(operation);
+
+            }
+            return;
+        };
         // pegandoo valor atual e anterior
         let operation_value;
-        let previous = +this.prev_operation_text.innerText;
+        let previous = +this.prev_operation_text.innerText.split(" ")[0];
         let current = +this.current_operation_text.innerText;
 
         switch(operation) {
             case "+":
                 operation_value = previous + current;
                 this,this.update_scream(operation_value, operation, current, previous)
+                break;
+            case "-":
+                operation_value = previous - current;
+                this,this.update_scream(operation_value, operation, current, previous)
+                break;
+            case "/":
+                operation_value = previous / current;
+                this,this.update_scream(operation_value, operation, current, previous)
+                break;
+            case "*":
+                operation_value = previous * current;
+                this,this.update_scream(operation_value, operation, current, previous)
+                break;
+            case "DEL":
+                this.process_del_operator();
+                break;
+            case "CE":
+                this.process_clear_operation();
+                break;
+            case "C":
+                this.process_clear();
+                break;
+            case "=":
+                this.process_equal();
                 break;
             default:
                 return;
@@ -51,6 +84,33 @@ class Calculator {
             this.prev_operation_text.innerText = `${operation_value} ${operation}`;
             this.current_operation_text.innerText = "";
         }
+    }
+
+    change_operation(operation) {
+        const math_operations = ["*", "/", "+", "-"];
+        if(!math_operations.includes(operation)) {
+            return;
+        }
+
+        this.prev_operation_text.innerText = this.prev_operation_text.innerText.slice(0, -1) + operation
+    }
+    // deleta o último numero
+    process_del_operator() {
+        this.current_operation_text.innerText = this.current_operation_text.innerText.slice(0, -1);
+    }
+    // limpar operaçoes atuais
+    process_clear_operation() {
+        this.current_operation_text.innerText = "";
+    }
+    // limpar tudo
+    process_clear(){
+        this.current_operation_text.innerText = "";
+        this.prev_operation_text.innerText = "";
+    }
+    // igual
+    process_equal() {
+        const operation = prev_operation_text.innerText.split(" ")[1];
+        this.process_operation(operation);
     }
 }
 
