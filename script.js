@@ -51,7 +51,7 @@ class Calculator {
                 break;
             case "*":
                 operation_value = previous * current;
-                this,this.update_scream(operation_value, operation, current, previous)
+                this.update_scream(operation_value, operation, current, previous)
                 break;
             case "DEL":
                 this.process_del_operator();
